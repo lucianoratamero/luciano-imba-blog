@@ -17,10 +17,11 @@ export tag Blog
       <Container>
         <Row>
           <Column.col-md-8.offset-md-2>
+            <h3> JSON.stringify @params
             if @blogPosts
               for post in @blogPosts
-                <PostSummary[post]>
-            else
+                <PostSummary[post] params=@params>
+            else if not @blogPosts
               <h1> 'Loading...'
 
 
