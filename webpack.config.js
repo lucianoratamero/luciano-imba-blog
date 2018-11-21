@@ -13,6 +13,17 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
+          {
+            loader: 'postcss-loader', // Run post css actions
+            options: {
+              plugins: function() { // post css plugins, can be exported to postcss.config.js
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ];
+              }
+            }
+          },
           'sass-loader'
         ]
       }
@@ -21,9 +32,9 @@ module.exports = {
   resolve: {
     extensions: ['.imba', '.js', '.json', '.scss']
   },
-  plugins: [ new HtmlWebpackPlugin({
+  plugins: [new HtmlWebpackPlugin({
     title: 'luciano@ratamero.com - olá Marilene!'
-  }) ],
+  })],
   entry: __dirname + '/src/App.imba',
   output: { path: __dirname + '/dist', filename: 'app.js' }
 };
